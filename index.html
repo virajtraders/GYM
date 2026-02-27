@@ -3,118 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FitTrainer Pro — GYM</title>
-<meta name="description" content="FitTrainer Pro — simple, professional fitness trainer web app." />
+<title>FitTrainer Pro</title>
+
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
-  body { background:#0f1720; color:#e6eef6; line-height:1.5; transition:background .25s,color .25s; }
-  header { background:linear-gradient(90deg,#071023,#0d1b2a); padding:18px 28px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 8px rgba(2,6,23,0.6); }
-  header h1 { font-size:18px; letter-spacing:0.6px; }
-  nav a { color:inherit; text-decoration:none; margin:0 12px; cursor:pointer; font-weight:600; opacity:.95; }
-  nav a:hover { color:#7ee7b3; }
-  button { padding:10px 16px; border:none; cursor:pointer; border-radius:8px; font-weight:600; }
-  .section { display:none; padding:40px 28px; max-width:980px; margin:28px auto; animation:fade .35s ease-in-out; }
-  .active { display:block; }
-  .card { background:#0b1a24; padding:18px; margin:14px 0; border-radius:10px; box-shadow:0 4px 14px rgba(2,6,23,0.6); }
-  input, select, textarea { padding:10px; margin:8px 0; width:100%; max-width:360px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:inherit; }
-  h1,h2,h3 { margin-bottom:12px; }
-  .row { display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
-  .hero { display:flex; gap:24px; align-items:center; justify-content:space-between; }
-  .hero p { opacity:.85; max-width:600px; }
-  .muted { color:rgba(230,238,246,0.7); font-size:14px; }
-  footer { padding:22px 28px; text-align:center; color:rgba(230,238,246,0.7); font-size:13px; border-top:1px solid rgba(255,255,255,0.03); margin-top:36px; }
-  a.repo { color:#7ee7b3; text-decoration:none; font-weight:600; }
-  @keyframes fade { from {opacity:0} to {opacity:1} }
-  .light { background:#f6f9fb; color:#051127; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:Segoe UI; }
+
+body {
+  background: linear-gradient(135deg,#141e30,#243b55);
+  color:white;
+  transition:0.4s;
+}
+
+header {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+nav a {
+  color:white;
+  text-decoration:none;
+  margin:12px;
+  font-weight:500;
+  position:relative;
+  transition:0.3s;
+}
+
+nav a::after {
+  content:"";
+  width:0%;
+  height:2px;
+  background:#00ffcc;
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  transition:0.3s;
+}
+
+nav a:hover::after { width:100%; }
+
+button {
+  padding:10px 20px;
+  border:none;
+  cursor:pointer;
+  margin:10px;
+  border-radius:30px;
+  background:linear-gradient(45deg,#00ffcc,#00c3ff);
+  color:black;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+button:hover {
+  transform:scale(1.05);
+}
+
+.section {
+  display:none;
+  padding:50px;
+  animation:fade 0.6s ease;
+}
+
+.active { display:block; }
+
+.card {
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(15px);
+  padding:25px;
+  margin:20px 0;
+  border-radius:15px;
+  transition:0.4s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+  transform:translateY(-8px);
+}
+
+input, select, textarea {
+  padding:10px;
+  margin:10px;
+  width:260px;
+  border-radius:10px;
+  border:none;
+}
+
+@keyframes fade {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+.light {
+  background:linear-gradient(135deg,#ffecd2,#fcb69f);
+  color:black;
+}
+
+.light .card {
+  background:white;
+  color:black;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>FitTrainer Pro</h1>
+  <h2>FitTrainer Pro</h2>
   <nav>
     <a onclick="showSection('home')">Home</a>
     <a onclick="showSection('exercise')">Exercises</a>
     <a onclick="showSection('bmi')">BMI</a>
     <a onclick="showSection('contact')">Contact</a>
   </nav>
-  <button class="toggle" onclick="toggleMode()">Mode</button>
+  <button onclick="toggleMode()">Mode</button>
 </header>
 
 <!-- HOME -->
 <div id="home" class="section active">
-  <div class="hero">
-    <div>
-      <h1>Train Smart. Build Strength.</h1>
-      <p class="muted">FitTrainer Pro helps you plan workouts, track progress, and calculate BMI — a lightweight, privacy-first trainer for daily use.</p>
-      <div style="margin-top:16px;"><button onclick="showSection('exercise')">Start Training</button></div>
-    </div>
-    <div>
-      <div class="card">
-        <strong>Quick Tips</strong>
-        <ul style="margin-top:10px; padding-left:18px;">
-          <li>Warm up 5–10 minutes before heavy sets</li>
-          <li>Progress gradually and track workouts</li>
-          <li>Consult a professional for medical advice</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <h1>Train Smart. Build Strength.</h1>
+  <p>Professional workout guidance platform with detailed exercises.</p>
+  <button onclick="showSection('exercise')">Start Training</button>
 </div>
 
-<!-- EXERCISE -->
+<!-- EXERCISES -->
 <div id="exercise" class="section">
   <h2>Select Body Part</h2>
+
   <select onchange="showWorkout(this.value)">
     <option value="">Select</option>
     <option value="chest">Chest</option>
     <option value="legs">Legs</option>
     <option value="arms">Arms</option>
+    <option value="abs">Abs</option>
   </select>
 
   <div id="workoutDisplay"></div>
 
-  <button onclick="saveWorkout()">Save Workout</button>
   <button onclick="goBack()">Back</button>
-
-  <h3>Saved Workouts</h3>
-  <div id="saved"></div>
 </div>
 
 <!-- BMI -->
 <div id="bmi" class="section">
   <h2>BMI Calculator</h2>
-  <div class="card">
-    <div class="row">
-      <input type="number" id="height" placeholder="Height (cm)" aria-label="Height in centimeters">
-      <input type="number" id="weight" placeholder="Weight (kg)" aria-label="Weight in kilograms">
-      <button onclick="calculateBMI()">Calculate</button>
-    </div>
-    <h3 id="bmiResult"></h3>
-  </div>
+  <input type="number" id="height" placeholder="Height (cm)">
+  <input type="number" id="weight" placeholder="Weight (kg)">
+  <button onclick="calculateBMI()">Calculate</button>
+  <h3 id="bmiResult"></h3>
 </div>
 
 <!-- CONTACT -->
 <div id="contact" class="section">
-  <h2>Contact</h2>
-  <div class="card">
-    <form onsubmit="sendMessage(event)">
-      <input type="text" id="name" placeholder="Your name" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <textarea id="msg" placeholder="Message" required rows="4"></textarea>
-      <div style="margin-top:12px;"><button type="submit">Send Message</button></div>
-    </form>
-  </div>
+  <h2>Contact Us</h2>
+  <form onsubmit="sendMessage(event)">
+    <input type="text" required placeholder="Your Name"><br>
+    <input type="email" required placeholder="Email"><br>
+    <textarea required placeholder="Message"></textarea><br>
+    <button type="submit">Send</button>
+  </form>
 </div>
 
-<footer>
-  Repository: <a class="repo" href="http://github.com/virajtraders/GYM" target="_blank" rel="noopener">http://github.com/virajtraders/GYM</a>
-</footer>
-
 <script>
-let currentWorkout = "";
-
 function showSection(id){
   document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -122,45 +173,77 @@ function showSection(id){
 
 function showWorkout(part){
   const display = document.getElementById("workoutDisplay");
-  currentWorkout = part;
 
-  if(part === "chest"){
-    display.innerHTML = "<div class='card'><h3>Push Ups</h3><p>Build chest strength</p></div>";
+  if(part==="chest"){
+    display.innerHTML = `
+    <div class="card">
+      <h3>Push-Ups</h3>
+      <p><b>Steps:</b><br>
+      1. Place hands shoulder-width apart.<br>
+      2. Keep body straight from head to heels.<br>
+      3. Lower chest slowly toward floor.<br>
+      4. Push back up without locking elbows.</p>
+      <a href="https://www.youtube.com/results?search_query=push+up+exercise" target="_blank">Watch on YouTube</a>
+    </div>
+    <div class="card">
+      <h3>Bench Press</h3>
+      <p>Lower bar slowly to mid chest and press upward while controlling breathing.</p>
+      <a href="https://www.youtube.com/results?search_query=bench+press+exercise" target="_blank">Watch on YouTube</a>
+    </div>`;
   }
-  else if(part === "legs"){
-    display.innerHTML = "<div class='card'><h3>Squats</h3><p>Build leg power</p></div>";
+
+  else if(part==="legs"){
+    display.innerHTML = `
+    <div class="card">
+      <h3>Squats</h3>
+      <p>Keep back straight, push hips back, lower until thighs parallel to ground.</p>
+      <a href="https://www.youtube.com/results?search_query=squat+exercise" target="_blank">Watch on YouTube</a>
+    </div>
+    <div class="card">
+      <h3>Lunges</h3>
+      <p>Step forward and lower body until knees form 90 degrees.</p>
+      <a href="https://www.youtube.com/results?search_query=lunge+exercise" target="_blank">Watch on YouTube</a>
+    </div>`;
   }
-  else if(part === "arms"){
-    display.innerHTML = "<div class='card'><h3>Bicep Curls</h3><p>Build arm strength</p></div>";
+
+  else if(part==="arms"){
+    display.innerHTML = `
+    <div class="card">
+      <h3>Bicep Curls</h3>
+      <p>Keep elbows fixed, curl weights upward slowly.</p>
+      <a href="https://www.youtube.com/results?search_query=bicep+curls" target="_blank">Watch on YouTube</a>
+    </div>
+    <div class="card">
+      <h3>Tricep Dips</h3>
+      <p>Lower body by bending elbows then push upward.</p>
+      <a href="https://www.youtube.com/results?search_query=tricep+dips" target="_blank">Watch on YouTube</a>
+    </div>`;
   }
+
+  else if(part==="abs"){
+    display.innerHTML = `
+    <div class="card">
+      <h3>Plank</h3>
+      <p>Keep body straight, engage core, hold for 30-60 seconds.</p>
+      <a href="https://www.youtube.com/results?search_query=plank+exercise" target="_blank">Watch on YouTube</a>
+    </div>
+    <div class="card">
+      <h3>Crunches</h3>
+      <p>Lift shoulders off ground while contracting abs.</p>
+      <a href="https://www.youtube.com/results?search_query=crunches+exercise" target="_blank">Watch on YouTube</a>
+    </div>`;
+  }
+
   else{
-    display.innerHTML = "";
+    display.innerHTML="";
   }
 }
-
-function saveWorkout(){
-  if(!currentWorkout) return alert("Select workout first");
-  let saved = JSON.parse(localStorage.getItem("workouts")) || [];
-  saved.push(currentWorkout);
-  localStorage.setItem("workouts", JSON.stringify(saved));
-  loadSaved();
-}
-
-function loadSaved(){
-  let saved = JSON.parse(localStorage.getItem("workouts")) || [];
-  const container = document.getElementById("saved");
-  container.innerHTML = "";
-  saved.forEach(w => {
-    container.innerHTML += "<div class='card'>" + w + "</div>";
-  });
-}
-loadSaved();
 
 function calculateBMI(){
-  const h = document.getElementById("height").value / 100;
+  const h = document.getElementById("height").value/100;
   const w = document.getElementById("weight").value;
-  const bmi = (w / (h*h)).toFixed(2);
-  document.getElementById("bmiResult").innerText = "Your BMI: " + bmi;
+  const bmi = (w/(h*h)).toFixed(2);
+  document.getElementById("bmiResult").innerText="Your BMI: "+bmi;
 }
 
 function sendMessage(e){
